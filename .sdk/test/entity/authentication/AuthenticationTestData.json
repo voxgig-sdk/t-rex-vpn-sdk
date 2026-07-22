@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "authentication": {
+      "AUTHENTICATION00": {
+        "email": "s32",
+        "expiry": "s33",
+        "password": "s34",
+        "token": "s35",
+        "user": {},
+        "id": "AUTHENTICATION00"
+      },
+      "AUTHENTICATION01": {
+        "email": "s64",
+        "expiry": "s65",
+        "password": "s66",
+        "token": "s67",
+        "user": {},
+        "id": "AUTHENTICATION01"
+      },
+      "AUTHENTICATION02": {
+        "email": "s96",
+        "expiry": "s97",
+        "password": "s98",
+        "token": "s99",
+        "user": {},
+        "id": "AUTHENTICATION02"
+      }
+    }
+  },
+  "new": {
+    "authentication": {
+      "authentication_ref01": {
+        "email": "sc8",
+        "expiry": "sc9",
+        "password": "sca",
+        "token": "scb",
+        "user": {}
+      }
+    }
+  }
+}

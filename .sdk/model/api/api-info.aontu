@@ -1,0 +1,31 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://github.com/l0v3m0n3y/trexvpn"
+      }
+      description: "The T-Rex VPN API allows developers to integrate VPN functionalities into their applications, enabling connections with military-grade encryption for enhanced privacy. Users can access content securely and enjoy unlimited bandwidth across more than 50 countries, ensuring a high-speed and reliable internet experience."
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "bearerAuth"
+        type: "http"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://t-rex.top/api"
+        }
+      ]
+      summary: "The T-Rex VPN API allows developers to integrate VPN functionalities into their applications, enabling connections with military-grade encryption for enhanced privacy."
+      title: "T-Rex VPN API"
+      version: "1.0.0"
+      website: "https://t-rex.top"
+    }
+  }
+}
+
