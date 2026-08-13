@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'TRexVpn',
   }
 
 
@@ -61,13 +61,19 @@ class Config {
         {
           "active": true,
           "name": "email",
-          "req": true,
+          "op": {
+            "create": {
+              "req": true,
+              "type": "`$STRING`"
+            }
+          },
+          "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "expiry",
+          "name": "id",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
@@ -78,20 +84,6 @@ class Config {
           "req": true,
           "type": "`$STRING`",
           "index$": 2
-        },
-        {
-          "active": true,
-          "name": "token",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
-        },
-        {
-          "active": true,
-          "name": "user",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 4
         }
       ],
       "name": "authentication",
@@ -103,6 +95,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/auth/login",
               "parts": [
@@ -112,7 +105,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.user`"
               },
               "index$": 0
             }

@@ -35,8 +35,8 @@ client = TRexVpnSDK.new({
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Authentication record.
-created = client.Authentication.create({ "email" => "example_email", "password" => "example_password" })
+# create returns the ENTITY — call data_get for the created Authentication record.
+created = client.Authentication.create({ "password" => "example_password" })
 
 ```
 
@@ -47,7 +47,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  authentication = client.Authentication.create({ "email" => "example", "password" => "example" })
+  authentication = client.Authentication.create({ "password" => "example" })
 rescue => err
   warn "create failed: #{err}"
 end
@@ -115,8 +115,9 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = TRexVpnSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-authentication = client.Authentication.create({ "email" => "example", "password" => "example" })
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+authentication = client.Authentication.create({ "password" => "example" })
 puts authentication
 ```
 
@@ -235,10 +236,8 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `email` |  |
-| `expiry` |  |
+| `id` |  |
 | `password` |  |
-| `token` |  |
-| `user` |  |
 
 Operations: Create.
 
@@ -264,16 +263,13 @@ Create an instance: `authentication = client.Authentication`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `String` |  |
-| `expiry` | `String` |  |
+| `id` | `String` |  |
 | `password` | `String` |  |
-| `token` | `String` |  |
-| `user` | `Hash` |  |
 
 #### Example: Create
 
 ```ruby
 authentication = client.Authentication.create({
-  "email" => "example_email", # String
   "password" => "example_password", # String
 })
 ```
@@ -356,7 +352,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 authentication = client.Authentication
-authentication.create({ "email" => "example", "password" => "example" })
+authentication.create({ "password" => "example" })
 
 # authentication.data_get now returns the authentication data from the last create
 # authentication.match_get returns the last match criteria

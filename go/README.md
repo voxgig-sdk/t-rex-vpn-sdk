@@ -54,7 +54,7 @@ func main() {
     })
 
     // Create a authentication.
-    created, err := client.Authentication(nil).Create(map[string]any{"email": "example_email", "password": "example_password"}, nil)
+    created, err := client.Authentication(nil).Create(map[string]any{"password": "example_password"}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,7 +69,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-authentication, err := client.Authentication(nil).Create(map[string]any{"email": "example", "password": "example"}, nil)
+authentication, err := client.Authentication(nil).Create(map[string]any{"password": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -139,7 +139,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 authentication, err := client.Authentication(nil).Create(
-    map[string]any{"email": "example", "password": "example"}, nil,
+    map[string]any{"password": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -264,10 +264,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"email"` |  |
-| `"expiry"` |  |
+| `"id"` |  |
 | `"password"` |  |
-| `"token"` |  |
-| `"user"` |  |
 
 Operations: Create.
 
@@ -293,16 +291,13 @@ Create an instance: `authentication := client.Authentication(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `string` |  |
-| `expiry` | `string` |  |
+| `id` | `string` |  |
 | `password` | `string` |  |
-| `token` | `string` |  |
-| `user` | `map[string]any` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.Authentication(nil).Create(map[string]any{
-    "email": "example_email",
     "password": "example_password",
 }, nil)
 if err != nil {
@@ -386,7 +381,7 @@ stores the returned data and match criteria internally.
 
 ```go
 authentication := client.Authentication(nil)
-authentication.Create(map[string]any{"email": "example", "password": "example"}, nil)
+authentication.Create(map[string]any{"password": "example"}, nil)
 
 // authentication.Data() now returns the authentication data from the last create
 // authentication.Match() returns the last match criteria

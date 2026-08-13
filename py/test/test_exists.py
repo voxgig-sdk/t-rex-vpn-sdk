@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# TRexVpn SDK exists test
 
 import pytest
 from trexvpn_sdk import TRexVpnSDK

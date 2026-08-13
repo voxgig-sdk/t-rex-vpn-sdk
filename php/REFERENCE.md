@@ -93,11 +93,17 @@ $authentication = $client->Authentication();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `expiry` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
 | `password` | `string` | Yes |  |
-| `token` | `string` | No |  |
-| `user` | `array` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `email` | Yes |
+| `id` | - |
+| `password` | - |
 
 ### Operations
 
@@ -107,7 +113,6 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Authentication()->create([
-  "email" => null, // string
   "password" => null, // string
 ]);
 ```

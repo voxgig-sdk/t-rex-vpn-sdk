@@ -44,7 +44,7 @@ func TestAuthenticationEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set TREXVPN_TEST_AUTHENTICATION_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set T_REX_VPN_TEST_AUTHENTICATION_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -58,9 +58,12 @@ func TestAuthenticationEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		authenticationRef01Data = core.ToMapAny(authenticationRef01DataResult)
+		authenticationRef01Data = core.ToMapAny(entityData(authenticationRef01DataResult))
 		if authenticationRef01Data == nil {
 			t.Fatal("expected create result to be a map")
+		}
+		if authenticationRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
 		}
 
 	})
@@ -103,38 +106,38 @@ func authenticationBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("TREXVPN_TEST_AUTHENTICATION_ENTID")
+	entidEnvRaw := os.Getenv("T_REX_VPN_TEST_AUTHENTICATION_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"TREXVPN_TEST_AUTHENTICATION_ENTID": idmap,
-		"TREXVPN_TEST_LIVE":      "FALSE",
-		"TREXVPN_TEST_EXPLAIN":   "FALSE",
-		"TREXVPN_APIKEY":         "NONE",
+		"T_REX_VPN_TEST_AUTHENTICATION_ENTID": idmap,
+		"T_REX_VPN_TEST_LIVE":      "FALSE",
+		"T_REX_VPN_TEST_EXPLAIN":   "FALSE",
+		"T_REX_VPN_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["TREXVPN_TEST_AUTHENTICATION_ENTID"])
+	idmapResolved := core.ToMapAny(env["T_REX_VPN_TEST_AUTHENTICATION_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["TREXVPN_TEST_LIVE"] == "TRUE" {
+	if env["T_REX_VPN_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["TREXVPN_APIKEY"],
+				"apikey": env["T_REX_VPN_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewTRexVpnSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["TREXVPN_TEST_LIVE"] == "TRUE"
+	live := env["T_REX_VPN_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["TREXVPN_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["T_REX_VPN_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

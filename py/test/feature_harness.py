@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import TRexVpnControl
-from core.error import TRexVpnError
-from core.result import TRexVpnResult
-from core.spec import TRexVpnSpec
+from trexvpn_sdk.config import make_config
+from trexvpn_sdk.features import _make_feature
+from trexvpn_sdk.core.control import TRexVpnControl
+from trexvpn_sdk.core.error import TRexVpnError
+from trexvpn_sdk.core.result import TRexVpnResult
+from trexvpn_sdk.core.spec import TRexVpnSpec
 
 
 # True when this SDK was generated with the named feature.

@@ -43,8 +43,8 @@ class TRexVpnTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('TREXVPN_TEST_LIVE');
-        $override = self::getenv('TREXVPN_TEST_OVERRIDE');
+        $live = self::getenv('T_REX_VPN_TEST_LIVE');
+        $override = self::getenv('T_REX_VPN_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class TRexVpnTestRunner
             }
         }
 
-        $explain = self::getenv('TREXVPN_TEST_EXPLAIN');
+        $explain = self::getenv('T_REX_VPN_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['TREXVPN_TEST_EXPLAIN'] = $explain;
+            $m['T_REX_VPN_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

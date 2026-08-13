@@ -2,39 +2,27 @@
   "existing": {
     "authentication": {
       "AUTHENTICATION00": {
-        "email": "s32",
-        "expiry": "s33",
-        "password": "s34",
-        "token": "s35",
-        "user": {},
-        "id": "AUTHENTICATION00"
+        "email": "s1e",
+        "id": "AUTHENTICATION00",
+        "password": "s20"
       },
       "AUTHENTICATION01": {
-        "email": "s64",
-        "expiry": "s65",
-        "password": "s66",
-        "token": "s67",
-        "user": {},
-        "id": "AUTHENTICATION01"
+        "email": "s3c",
+        "id": "AUTHENTICATION01",
+        "password": "s3e"
       },
       "AUTHENTICATION02": {
-        "email": "s96",
-        "expiry": "s97",
-        "password": "s98",
-        "token": "s99",
-        "user": {},
-        "id": "AUTHENTICATION02"
+        "email": "s5a",
+        "id": "AUTHENTICATION02",
+        "password": "s5c"
       }
     }
   },
   "new": {
     "authentication": {
       "authentication_ref01": {
-        "email": "sc8",
-        "expiry": "sc9",
-        "password": "sca",
-        "token": "scb",
-        "user": {}
+        "email": "s78",
+        "password": "s7a"
       }
     }
   }

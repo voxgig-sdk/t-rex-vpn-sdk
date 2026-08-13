@@ -117,11 +117,17 @@ const authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `expiry` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
 | `password` | `string` | Yes |  |
-| `token` | `string` | No |  |
-| `user` | `Record<string, any>` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `email` | Yes |
+| `id` | - |
+| `password` | - |
 
 ### Operations
 
@@ -131,7 +137,6 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Authentication().create({
-  email: 'example_email',
   password: 'example_password',
 })
 ```

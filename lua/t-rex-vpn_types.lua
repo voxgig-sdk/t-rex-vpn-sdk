@@ -7,18 +7,14 @@
 -- edit by hand.
 
 ---@class Authentication
----@field email string
----@field expiry? string
+---@field email? string
+---@field id? string
 ---@field password string
----@field token? string
----@field user? table
 
 ---@class AuthenticationCreateData
----@field email string
----@field expiry? string
+---@field email? string
+---@field id? string
 ---@field password string
----@field token? string
----@field user? table
 
 local M = {}
 

@@ -30,13 +30,19 @@ local function make_config()
           {
             ["active"] = true,
             ["name"] = "email",
-            ["req"] = true,
+            ["op"] = {
+              ["create"] = {
+                ["req"] = true,
+                ["type"] = "`$STRING`",
+              },
+            },
+            ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "expiry",
+            ["name"] = "id",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -48,20 +54,6 @@ local function make_config()
             ["type"] = "`$STRING`",
             ["index$"] = 2,
           },
-          {
-            ["active"] = true,
-            ["name"] = "token",
-            ["req"] = false,
-            ["type"] = "`$STRING`",
-            ["index$"] = 3,
-          },
-          {
-            ["active"] = true,
-            ["name"] = "user",
-            ["req"] = false,
-            ["type"] = "`$OBJECT`",
-            ["index$"] = 4,
-          },
         },
         ["name"] = "authentication",
         ["op"] = {
@@ -72,6 +64,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/auth/login",
                 ["parts"] = {
@@ -81,7 +74,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.user`",
                 },
                 ["index$"] = 0,
               },

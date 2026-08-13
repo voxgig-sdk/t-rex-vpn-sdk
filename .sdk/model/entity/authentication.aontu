@@ -7,11 +7,17 @@ main: kit: entity: authentication: {
   fields: [
     {
       name: "email"
-      req: true
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
       type: "`$STRING`"
     }
     {
-      name: "expiry"
+      name: "id"
       req: false
       type: "`$STRING`"
     }
@@ -20,17 +26,12 @@ main: kit: entity: authentication: {
       req: true
       type: "`$STRING`"
     }
-    {
-      name: "token"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "user"
-      req: false
-      type: "`$OBJECT`"
-    }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "authentication"
   op: {
@@ -46,7 +47,7 @@ main: kit: entity: authentication: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.user`"
           }
         }
       ]

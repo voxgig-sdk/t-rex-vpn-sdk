@@ -6,18 +6,14 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Authentication {
-  email: string
-  expiry?: string
+  email?: string
+  id?: string
   password: string
-  token?: string
-  user?: Record<string, any>
 }
 
 export interface AuthenticationCreateData {
-  email: string
-  expiry?: string
+  email?: string
+  id?: string
   password: string
-  token?: string
-  user?: Record<string, any>
 }
 

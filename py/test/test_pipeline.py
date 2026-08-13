@@ -16,11 +16,11 @@
 import pytest
 
 from trexvpn_sdk import TRexVpnSDK
-from core.error import TRexVpnError
-from core.result import TRexVpnResult
-from core.response import TRexVpnResponse
-from core.spec import TRexVpnSpec
-from feature.base_feature import TRexVpnBaseFeature
+from trexvpn_sdk.core.error import TRexVpnError
+from trexvpn_sdk.core.result import TRexVpnResult
+from trexvpn_sdk.core.response import TRexVpnResponse
+from trexvpn_sdk.core.spec import TRexVpnSpec
+from trexvpn_sdk.feature.base_feature import TRexVpnBaseFeature
 
 
 def _client():

@@ -23,8 +23,8 @@ module TRexVpnTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("TREXVPN_TEST_LIVE")
-    override = getenv("TREXVPN_TEST_OVERRIDE")
+    live = getenv("T_REX_VPN_TEST_LIVE")
+    override = getenv("T_REX_VPN_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module TRexVpnTestRunner
       end
     end
 
-    explain = getenv("TREXVPN_TEST_EXPLAIN")
-    m["TREXVPN_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("T_REX_VPN_TEST_EXPLAIN")
+    m["T_REX_VPN_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ TRexVpnUtility::setRegistrar(function (TRexVpnUtility $u): void {
     $u->prepare_params = [TRexVpnPrepareParams::class, 'call'];
     $u->prepare_path = [TRexVpnPreparePath::class, 'call'];
     $u->prepare_query = [TRexVpnPrepareQuery::class, 'call'];
+    $u->graphql_body = [TRexVpnGraphql::class, 'body'];
+    $u->graphql_errors = [TRexVpnGraphql::class, 'errors'];
     $u->result_basic = [TRexVpnResultBasic::class, 'call'];
     $u->result_body = [TRexVpnResultBody::class, 'call'];
     $u->result_headers = [TRexVpnResultHeaders::class, 'call'];

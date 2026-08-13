@@ -99,11 +99,17 @@ fmt.Println(authentication.GetName()) // "authentication"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | Yes |  |
-| `expiry` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
 | `password` | `string` | Yes |  |
-| `token` | `string` | No |  |
-| `user` | `map[string]any` | No |  |
+
+### Field Usage by Operation
+
+| Field | create |
+| --- | --- |
+| `email` | Yes |
+| `id` | - |
+| `password` | - |
 
 ### Operations
 
@@ -113,7 +119,6 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Authentication(nil).Create(map[string]any{
-    "email": "example_email",
     "password": "example_password",
 }, nil)
 if err != nil {

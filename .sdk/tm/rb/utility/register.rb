@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ TRexVpnUtility.registrar = ->(u) {
   u.prepare_params = TRexVpnUtilities::PrepareParams
   u.prepare_path = TRexVpnUtilities::PreparePath
   u.prepare_query = TRexVpnUtilities::PrepareQuery
+  u.graphql_body = TRexVpnUtilities::GraphqlBody
+  u.graphql_errors = TRexVpnUtilities::GraphqlErrors
   u.result_basic = TRexVpnUtilities::ResultBasic
   u.result_body = TRexVpnUtilities::ResultBody
   u.result_headers = TRexVpnUtilities::ResultHeaders

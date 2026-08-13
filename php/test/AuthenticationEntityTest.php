@@ -33,7 +33,7 @@ class AuthenticationEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set TREXVPN_TEST_AUTHENTICATION_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set T_REX_VPN_TEST_AUTHENTICATION_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -44,8 +44,9 @@ class AuthenticationEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.authentication"), "authentication_ref01"));
 
         $authentication_ref01_data_result = $authentication_ref01_ent->create($authentication_ref01_data, null);
-        $authentication_ref01_data = Helpers::to_map($authentication_ref01_data_result);
+        $authentication_ref01_data = Helpers::to_map(is_object($authentication_ref01_data_result) && method_exists($authentication_ref01_data_result, 'data_get') ? $authentication_ref01_data_result->data_get() : $authentication_ref01_data_result);
         $this->assertNotNull($authentication_ref01_data);
+        $this->assertNotNull($authentication_ref01_data["id"]);
 
     }
 }
@@ -72,39 +73,39 @@ function authentication_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("TREXVPN_TEST_AUTHENTICATION_ENTID");
+    $entid_env_raw = getenv("T_REX_VPN_TEST_AUTHENTICATION_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "TREXVPN_TEST_AUTHENTICATION_ENTID" => $idmap,
-        "TREXVPN_TEST_LIVE" => "FALSE",
-        "TREXVPN_TEST_EXPLAIN" => "FALSE",
-        "TREXVPN_APIKEY" => "NONE",
+        "T_REX_VPN_TEST_AUTHENTICATION_ENTID" => $idmap,
+        "T_REX_VPN_TEST_LIVE" => "FALSE",
+        "T_REX_VPN_TEST_EXPLAIN" => "FALSE",
+        "T_REX_VPN_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["TREXVPN_TEST_AUTHENTICATION_ENTID"]);
+        $env["T_REX_VPN_TEST_AUTHENTICATION_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["TREXVPN_TEST_LIVE"] === "TRUE") {
+    if ($env["T_REX_VPN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["TREXVPN_APIKEY"],
+                "apikey" => $env["T_REX_VPN_APIKEY"],
             ],
             $extra ?? [],
         ]);
         $client = new TRexVpnSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["TREXVPN_TEST_LIVE"] === "TRUE";
+    $live = $env["T_REX_VPN_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["TREXVPN_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["T_REX_VPN_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

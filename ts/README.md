@@ -38,9 +38,8 @@ const client = new TRexVpnSDK({
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Authentication
+// Create — returns the created Authentication ENTITY (.data() for the record)
 const created = await client.Authentication().create({
-  email: 'example_email',
   password: 'example_password',
 })
 
@@ -53,7 +52,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const authentication = await client.Authentication().create({ email: "example", password: "example" })
+  const authentication = await client.Authentication().create({ password: "example" })
   console.log(authentication)
 } catch (err) {
   console.error('create failed:', err)
@@ -120,8 +119,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TRexVpnSDK.test()
 
-const authentication = await client.Authentication().create({ email: 'example_email', password: 'example_password' })
-// authentication is a bare entity populated with mock response data
+const authentication = await client.Authentication().create({ password: 'example_password' })
+// authentication is the entity, populated with mock response data
+// — call authentication.data() for the record itself
 console.log(authentication)
 ```
 
@@ -140,11 +140,11 @@ Entity instances remember their last match and data:
 const entity = client.Authentication()
 
 // First call runs the operation and stores its result
-await entity.create({ email: 'example_email', password: 'example_password' })
+await entity.create({ password: 'example_password' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -289,10 +289,8 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `email` |  |
-| `expiry` |  |
+| `id` |  |
 | `password` |  |
-| `token` |  |
-| `user` |  |
 
 Operations: create.
 
@@ -318,16 +316,13 @@ Create an instance: `const authentication = client.Authentication()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `string` |  |
-| `expiry` | `string` |  |
+| `id` | `string` |  |
 | `password` | `string` |  |
-| `token` | `string` |  |
-| `user` | `Record<string, any>` |  |
 
 #### Example: Create
 
 ```ts
 const authentication = await client.Authentication().create({
-  email: 'example_email',
   password: 'example_password',
 })
 ```
@@ -403,7 +398,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const authentication = client.Authentication()
-await authentication.create({ email: "example", password: "example" })
+await authentication.create({ password: "example" })
 
 // authentication.data() now returns the authentication data from the last `create`
 // authentication.match() returns the last match criteria

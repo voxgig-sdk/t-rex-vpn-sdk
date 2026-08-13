@@ -15,20 +15,16 @@ declare(strict_types=1);
 /** Authentication entity data model. */
 class Authentication
 {
-    public string $email;
-    public ?string $expiry = null;
+    public ?string $email = null;
+    public ?string $id = null;
     public string $password;
-    public ?string $token = null;
-    public ?array $user = null;
 }
 
 /** Request payload for Authentication#create. */
 class AuthenticationCreateData
 {
-    public string $email;
-    public ?string $expiry = null;
+    public ?string $email = null;
+    public ?string $id = null;
     public string $password;
-    public ?string $token = null;
-    public ?array $user = null;
 }
 
