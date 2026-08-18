@@ -23,8 +23,8 @@ class TRexVpnSDK:
         utility = TRexVpnUtility()
         self._utility = utility
 
-        from trexvpn_sdk.config import make_config
-        config = make_config()
+        from trexvpn_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

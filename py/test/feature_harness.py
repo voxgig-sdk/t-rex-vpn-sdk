@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from trexvpn_sdk.config import make_config
+from trexvpn_sdk.config import shared_config
 from trexvpn_sdk.features import _make_feature
 from trexvpn_sdk.core.control import TRexVpnControl
 from trexvpn_sdk.core.error import TRexVpnError
@@ -24,7 +24,7 @@ from trexvpn_sdk.core.spec import TRexVpnSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

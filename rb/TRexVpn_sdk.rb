@@ -28,7 +28,7 @@ class TRexVpnSDK
     utility = TRexVpnUtility.new
     @_utility = utility
 
-    config = TRexVpnConfig.make_config
+    config = TRexVpnConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

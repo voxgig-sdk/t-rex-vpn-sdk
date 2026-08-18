@@ -40,7 +40,7 @@ class TRexVpnSDK
         $utility = new TRexVpnUtility();
         $this->_utility = $utility;
 
-        $config = TRexVpnConfig::make_config();
+        $config = TRexVpnConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
