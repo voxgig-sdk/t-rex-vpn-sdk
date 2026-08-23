@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "TRexVpn",
+			"slug": "t-rex-vpn",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -42,6 +45,7 @@ func MakeConfig() map[string]any {
 								"type": "`$STRING`",
 							},
 						},
+						"short": "User email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -51,6 +55,7 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "password",
 						"req": true,
+						"short": "User password",
 						"type": "`$STRING`",
 					},
 				},

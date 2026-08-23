@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "TRexVpn",
+            "slug": "t-rex-vpn",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -59,6 +62,7 @@ def make_config():
                 "type": "`$STRING`",
               },
             },
+            "short": "User email address",
             "type": "`$STRING`",
           },
           {
@@ -68,6 +72,7 @@ def make_config():
           {
             "name": "password",
             "req": True,
+            "short": "User password",
             "type": "`$STRING`",
           },
         ],

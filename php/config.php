@@ -33,6 +33,9 @@ class TRexVpnConfig
         return [
             "main" => [
                 "name" => "TRexVpn",
+                "slug" => "t-rex-vpn",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -64,6 +67,7 @@ class TRexVpnConfig
                   'type' => '`$STRING`',
                 ],
               ],
+              'short' => 'User email address',
               'type' => '`$STRING`',
             ],
             [
@@ -73,6 +77,7 @@ class TRexVpnConfig
             [
               'name' => 'password',
               'req' => true,
+              'short' => 'User password',
               'type' => '`$STRING`',
             ],
           ],

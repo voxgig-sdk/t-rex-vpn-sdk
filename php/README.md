@@ -245,9 +245,9 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
+| `email` | User email address |
 | `id` |  |
-| `password` |  |
+| `password` | User password |
 
 Operations: Create.
 
@@ -272,9 +272,9 @@ Create an instance: `$authentication = $client->Authentication();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `string` |  |
+| `email` | `string` | User email address |
 | `id` | `string` |  |
-| `password` | `string` |  |
+| `password` | `string` | User password |
 
 #### Example: Create
 

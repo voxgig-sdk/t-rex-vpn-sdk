@@ -94,9 +94,9 @@ authentication = client.Authentication
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `String` | No |  |
+| `email` | `String` | No | User email address |
 | `id` | `String` | No |  |
-| `password` | `String` | Yes |  |
+| `password` | `String` | Yes | User password |
 
 ### Field Usage by Operation
 

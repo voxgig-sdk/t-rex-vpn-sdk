@@ -242,9 +242,9 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `email` |  |
+| `email` | User email address |
 | `id` |  |
-| `password` |  |
+| `password` | User password |
 
 Operations: Create.
 
@@ -269,9 +269,9 @@ Create an instance: `authentication = client.Authentication()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `email` | `str` |  |
+| `email` | `str` | User email address |
 | `id` | `str` |  |
-| `password` | `str` |  |
+| `password` | `str` | User password |
 
 #### Example: Create
 

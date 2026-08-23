@@ -19,6 +19,9 @@ module TRexVpnConfig
     {
       "main" => {
         "name" => "TRexVpn",
+        "slug" => "t-rex-vpn",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -50,6 +53,7 @@ module TRexVpnConfig
                   "type" => "`$STRING`",
                 },
               },
+              "short" => "User email address",
               "type" => "`$STRING`",
             },
             {
@@ -59,6 +63,7 @@ module TRexVpnConfig
             {
               "name" => "password",
               "req" => true,
+              "short" => "User password",
               "type" => "`$STRING`",
             },
           ],

@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "TRexVpn",
+      slug = "t-rex-vpn",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -38,6 +41,7 @@ local function make_config()
                 ["type"] = "`$STRING`",
               },
             },
+            ["short"] = "User email address",
             ["type"] = "`$STRING`",
           },
           {
@@ -47,6 +51,7 @@ local function make_config()
           {
             ["name"] = "password",
             ["req"] = true,
+            ["short"] = "User password",
             ["type"] = "`$STRING`",
           },
         },

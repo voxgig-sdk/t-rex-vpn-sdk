@@ -88,9 +88,9 @@ authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `str` | No |  |
+| `email` | `str` | No | User email address |
 | `id` | `str` | No |  |
-| `password` | `str` | Yes |  |
+| `password` | `str` | Yes | User password |
 
 ### Field Usage by Operation
 

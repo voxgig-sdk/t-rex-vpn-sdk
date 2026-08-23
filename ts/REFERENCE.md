@@ -117,9 +117,9 @@ const authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `string` | No |  |
+| `email` | `string` | No | User email address |
 | `id` | `string` | No |  |
-| `password` | `string` | Yes |  |
+| `password` | `string` | Yes | User password |
 
 ### Field Usage by Operation
 

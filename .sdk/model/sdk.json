@@ -42,6 +42,7 @@
                 }
               },
               "req": false,
+              "short": "User email address",
               "type": "`$STRING`"
             },
             {
@@ -54,6 +55,7 @@
               "active": true,
               "name": "password",
               "req": true,
+              "short": "User password",
               "type": "`$STRING`"
             }
           ],
