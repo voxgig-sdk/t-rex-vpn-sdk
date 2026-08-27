@@ -28,6 +28,7 @@ module TRexVpnConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
