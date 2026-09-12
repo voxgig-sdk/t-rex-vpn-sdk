@@ -77,7 +77,7 @@ def authentication_basic_setup(extra)
     "T_REX_VPN_TEST_AUTHENTICATION_ENTID" => idmap,
     "T_REX_VPN_TEST_LIVE" => "FALSE",
     "T_REX_VPN_TEST_EXPLAIN" => "FALSE",
-    "T_REX_VPN_APIKEY" => "NONE",
+    "T_REX_VPN_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -88,6 +88,9 @@ def authentication_basic_setup(extra)
 
   if env["T_REX_VPN_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["T_REX_VPN_APIKEY"],
       },

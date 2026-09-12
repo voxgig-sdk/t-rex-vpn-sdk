@@ -61,6 +61,7 @@ class TRexVpnConfig
         'authentication' => [
           'fields' => [
             [
+              'format' => 'email',
               'name' => 'email',
               'op' => [
                 'create' => [
@@ -76,11 +77,16 @@ class TRexVpnConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'password',
               'name' => 'password',
               'req' => true,
               'short' => 'User password',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'authentication',
           'op' => [
@@ -93,14 +99,22 @@ class TRexVpnConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/auth/login',
-                  'parts' => [
-                    'auth',
-                    'login',
+                  'segments' => [
+                    [
+                      'lit' => 'auth',
+                    ],
+                    [
+                      'lit' => 'login',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.user`',
+                  ],
+                  'parts' => [
+                    'auth',
+                    'login',
                   ],
                 ],
               ],

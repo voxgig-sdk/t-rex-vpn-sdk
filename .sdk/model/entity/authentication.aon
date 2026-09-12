@@ -6,6 +6,7 @@ main: kit: entity: authentication: {
 
   fields: [
     {
+      format: "email"
       name: "email"
       op: {
         create: {
@@ -23,6 +24,7 @@ main: kit: entity: authentication: {
       type: "`$STRING`"
     }
     {
+      format: "password"
       name: "password"
       req: true
       short: "User password"
@@ -43,9 +45,13 @@ main: kit: entity: authentication: {
         {
           method: "POST"
           orig: "/auth/login"
-          parts: [
-            "auth"
-            "login"
+          segments: [
+            {
+              lit: "auth"
+            }
+            {
+              lit: "login"
+            }
           ]
           transform: {
             req: "`reqdata`"

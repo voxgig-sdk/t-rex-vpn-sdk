@@ -35,6 +35,7 @@ local function make_config()
       ["authentication"] = {
         ["fields"] = {
           {
+            ["format"] = "email",
             ["name"] = "email",
             ["op"] = {
               ["create"] = {
@@ -50,11 +51,16 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "password",
             ["name"] = "password",
             ["req"] = true,
             ["short"] = "User password",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "authentication",
         ["op"] = {
@@ -67,14 +73,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/auth/login",
-                ["parts"] = {
-                  "auth",
-                  "login",
+                ["segments"] = {
+                  {
+                    ["lit"] = "auth",
+                  },
+                  {
+                    ["lit"] = "login",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.user`",
+                },
+                ["parts"] = {
+                  "auth",
+                  "login",
                 },
               },
             },
