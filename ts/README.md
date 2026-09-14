@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TRexVpnSDK } from '@voxgig-sdk/t-rex-vpn'
+import { TRexVpnSDK } from '@voxgig-sdk/t-rex-vpn-sdk'
 
 const client = new TRexVpnSDK({
   apikey: process.env.T_REX_VPN_APIKEY,
@@ -410,7 +410,7 @@ t-rex-vpn/
 Import the SDK from the package root:
 
 ```ts
-import { TRexVpnSDK } from '@voxgig-sdk/t-rex-vpn'
+import { TRexVpnSDK } from '@voxgig-sdk/t-rex-vpn-sdk'
 ```
 
 ### Entity state

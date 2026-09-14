@@ -107,7 +107,7 @@ local result, err = client:Authentication():create({ password = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases) |
+| TypeScript | `@voxgig-sdk/t-rex-vpn-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases) |
 | Python | `voxgig-sdk-t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases) |
 | PHP | `voxgig-sdk/t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/t-rex-vpn-sdk/go` | `go get github.com/voxgig-sdk/t-rex-vpn-sdk/go@latest` |
@@ -121,7 +121,7 @@ local result, err = client:Authentication():create({ password = "example" })
 ### TypeScript
 
 ```ts
-import { TRexVpnSDK } from '@voxgig-sdk/t-rex-vpn'
+import { TRexVpnSDK } from '@voxgig-sdk/t-rex-vpn-sdk'
 
 const client = new TRexVpnSDK({
   apikey: process.env.T_REX_VPN_APIKEY,
