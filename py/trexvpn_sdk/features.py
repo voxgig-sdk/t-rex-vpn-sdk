@@ -1,12 +1,18 @@
 # TRexVpn SDK feature factory
 
 from trexvpn_sdk.feature.base_feature import TRexVpnBaseFeature
+from trexvpn_sdk.feature.ratelimit_feature import TRexVpnRatelimitFeature
+from trexvpn_sdk.feature.retry_feature import TRexVpnRetryFeature
 from trexvpn_sdk.feature.test_feature import TRexVpnTestFeature
+from trexvpn_sdk.feature.timeout_feature import TRexVpnTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: TRexVpnBaseFeature(),
+    "ratelimit": lambda: TRexVpnRatelimitFeature(),
+    "retry": lambda: TRexVpnRetryFeature(),
     "test": lambda: TRexVpnTestFeature(),
+    "timeout": lambda: TRexVpnTimeoutFeature(),
 }
 
 

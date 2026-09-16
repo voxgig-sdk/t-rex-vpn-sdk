@@ -25,5 +25,159 @@
         "password": "s7a"
       }
     }
+  },
+  "requests": {
+    "POST /auth/login": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "login",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "description": "User email address",
+                    "example": "user@example.com",
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "password": {
+                    "description": "User password",
+                    "example": "SecurePassword123",
+                    "format": "password",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "expiry": {
+                      "description": "Token expiration time",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "token": {
+                      "description": "Authentication token for VPN access",
+                      "type": "string"
+                    },
+                    "user": {
+                      "properties": {
+                        "email": {
+                          "format": "email",
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful authentication"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - Invalid input parameters"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Invalid credentials"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "integer"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySchemes": {
+          "bearerAuth": {
+            "bearerFormat": "JWT",
+            "description": "JWT token obtained from login endpoint",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
