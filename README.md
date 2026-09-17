@@ -107,12 +107,12 @@ local result, err = client:Authentication():create({ password = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/t-rex-vpn-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases) |
-| Python | `voxgig-sdk-t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases) |
-| PHP | `voxgig-sdk/t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases) |
+| TypeScript | `@voxgig-sdk/t-rex-vpn-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/tags) |
+| Python | `voxgig-sdk-t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/tags) |
+| PHP | `voxgig-sdk/t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/t-rex-vpn-sdk/go` | `go get github.com/voxgig-sdk/t-rex-vpn-sdk/go@latest` |
-| Ruby | `voxgig-sdk-t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases) |
-| Lua | `voxgig-sdk-t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases) |
+| Ruby | `voxgig-sdk-t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/tags) |
+| Lua | `voxgig-sdk-t-rex-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/t-rex-vpn-sdk/go-cli` | `go install github.com/voxgig-sdk/t-rex-vpn-sdk/go-cli/cmd/t-rex-vpn@latest` |
 | Go MCP server | `github.com/voxgig-sdk/t-rex-vpn-sdk/go-mcp` | `go get github.com/voxgig-sdk/t-rex-vpn-sdk/go-mcp@latest` |
 
