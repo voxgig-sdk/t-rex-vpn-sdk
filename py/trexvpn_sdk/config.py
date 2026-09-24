@@ -118,8 +118,9 @@ def make_config():
       "authentication": {
         "fields": [
           {
-            "format": "email",
             "name": "email",
+            "title": "Email",
+            "type": "`$STRING`",
             "op": {
               "create": {
                 "req": True,
@@ -127,18 +128,20 @@ def make_config():
               },
             },
             "short": "User email address",
-            "type": "`$STRING`",
+            "format": "email",
           },
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
           {
-            "format": "password",
             "name": "password",
+            "title": "Password",
+            "type": "`$STRING`",
             "req": True,
             "short": "User password",
-            "type": "`$STRING`",
+            "format": "password",
           },
         ],
         "id": {
@@ -152,7 +155,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/auth/login",
@@ -164,15 +166,17 @@ def make_config():
                     "lit": "login",
                   },
                 ],
-                "select": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.user`",
-                },
                 "parts": [
                   "auth",
                   "login",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.user`",
+                },
+                "args": {},
+                "select": {},
               },
             ],
           },

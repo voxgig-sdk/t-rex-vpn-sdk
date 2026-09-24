@@ -101,8 +101,9 @@ module TRexVpnConfig
         "authentication" => {
           "fields" => [
             {
-              "format" => "email",
               "name" => "email",
+              "title" => "Email",
+              "type" => "`$STRING`",
               "op" => {
                 "create" => {
                   "req" => true,
@@ -110,18 +111,20 @@ module TRexVpnConfig
                 },
               },
               "short" => "User email address",
-              "type" => "`$STRING`",
+              "format" => "email",
             },
             {
               "name" => "id",
+              "title" => "Id",
               "type" => "`$STRING`",
             },
             {
-              "format" => "password",
               "name" => "password",
+              "title" => "Password",
+              "type" => "`$STRING`",
               "req" => true,
               "short" => "User password",
-              "type" => "`$STRING`",
+              "format" => "password",
             },
           ],
           "id" => {
@@ -135,7 +138,6 @@ module TRexVpnConfig
               "name" => "create",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/auth/login",
@@ -147,15 +149,17 @@ module TRexVpnConfig
                       "lit" => "login",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.user`",
-                  },
                   "parts" => [
                     "auth",
                     "login",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.user`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },

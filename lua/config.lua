@@ -89,8 +89,9 @@ local function make_config()
       ["authentication"] = {
         ["fields"] = {
           {
-            ["format"] = "email",
             ["name"] = "email",
+            ["title"] = "Email",
+            ["type"] = "`$STRING`",
             ["op"] = {
               ["create"] = {
                 ["req"] = true,
@@ -98,18 +99,20 @@ local function make_config()
               },
             },
             ["short"] = "User email address",
-            ["type"] = "`$STRING`",
+            ["format"] = "email",
           },
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
           {
-            ["format"] = "password",
             ["name"] = "password",
+            ["title"] = "Password",
+            ["type"] = "`$STRING`",
             ["req"] = true,
             ["short"] = "User password",
-            ["type"] = "`$STRING`",
+            ["format"] = "password",
           },
         },
         ["id"] = {
@@ -123,7 +126,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/auth/login",
@@ -135,15 +137,17 @@ local function make_config()
                     ["lit"] = "login",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.user`",
-                },
                 ["parts"] = {
                   "auth",
                   "login",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.user`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },

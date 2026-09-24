@@ -93,8 +93,9 @@ func MakeConfig() map[string]any {
 			"authentication": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "email",
 						"name": "email",
+						"title": "Email",
+						"type": "`$STRING`",
 						"op": map[string]any{
 							"create": map[string]any{
 								"req": true,
@@ -102,18 +103,20 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "User email address",
-						"type": "`$STRING`",
+						"format": "email",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "password",
 						"name": "password",
+						"title": "Password",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "User password",
-						"type": "`$STRING`",
+						"format": "password",
 					},
 				},
 				"id": map[string]any{
@@ -127,7 +130,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/auth/login",
@@ -139,15 +141,17 @@ func MakeConfig() map[string]any {
 										"lit": "login",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.user`",
-								},
 								"parts": []any{
 									"auth",
 									"login",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.user`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
