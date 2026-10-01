@@ -88,17 +88,11 @@ authentication = client.Authentication()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `email` | `str` | No | User email address |
-| `id` | `str` | No |  |
+| `email` | `str` | Yes | User email address |
+| `expiry` | `str` | No | Token expiration time |
 | `password` | `str` | Yes | User password |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `email` | Yes |
-| `id` | - |
-| `password` | - |
+| `token` | `str` | No | Authentication token for VPN access |
+| `user` | `dict` | No |  |
 
 ### Operations
 
@@ -108,6 +102,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Authentication().create({
+    "email": "example_email",  # str
     "password": "example_password",  # str
 })
 ```

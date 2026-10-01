@@ -102,21 +102,17 @@
               "fo": "email",
               "h": "Email",
               "n": "email",
-              "op": {
-                "create": {
-                  "req": true,
-                  "type": "`$STRING`"
-                }
-              },
-              "r": false,
+              "r": true,
               "sh": "User email address",
               "t": "`$STRING`"
             },
-            "id": {
+            "expiry": {
               "a": true,
-              "h": "Id",
-              "n": "id",
+              "fo": "date-time",
+              "h": "Expiry",
+              "n": "expiry",
               "r": false,
+              "sh": "Token expiration time",
               "t": "`$STRING`"
             },
             "password": {
@@ -127,11 +123,22 @@
               "r": true,
               "sh": "User password",
               "t": "`$STRING`"
+            },
+            "token": {
+              "a": true,
+              "h": "Token",
+              "n": "token",
+              "r": false,
+              "sh": "Authentication token for VPN access",
+              "t": "`$STRING`"
+            },
+            "user": {
+              "a": true,
+              "h": "User",
+              "n": "user",
+              "r": false,
+              "t": "`$OBJECT`"
             }
-          },
-          "id": {
-            "field": "id",
-            "name": "id"
           },
           "name": "authentication",
           "op": {
@@ -162,7 +169,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.user`"
+                    "res": "`body`"
                   }
                 }
               ]
@@ -645,7 +652,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

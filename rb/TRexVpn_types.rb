@@ -11,34 +11,50 @@
 # Authentication entity data model.
 #
 # @!attribute [rw] email
-#   @return [String, nil]
+#   @return [String]
 #
-# @!attribute [rw] id
+# @!attribute [rw] expiry
 #   @return [String, nil]
 #
 # @!attribute [rw] password
 #   @return [String]
+#
+# @!attribute [rw] token
+#   @return [String, nil]
+#
+# @!attribute [rw] user
+#   @return [Hash, nil]
 Authentication = Struct.new(
   :email,
-  :id,
+  :expiry,
   :password,
+  :token,
+  :user,
   keyword_init: true
 )
 
 # Request payload for Authentication#create.
 #
 # @!attribute [rw] email
-#   @return [String, nil]
+#   @return [String]
 #
-# @!attribute [rw] id
+# @!attribute [rw] expiry
 #   @return [String, nil]
 #
 # @!attribute [rw] password
 #   @return [String]
+#
+# @!attribute [rw] token
+#   @return [String, nil]
+#
+# @!attribute [rw] user
+#   @return [Hash, nil]
 AuthenticationCreateData = Struct.new(
   :email,
-  :id,
+  :expiry,
   :password,
+  :token,
+  :user,
   keyword_init: true
 )
 

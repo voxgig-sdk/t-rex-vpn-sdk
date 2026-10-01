@@ -18,9 +18,11 @@ type Authentication struct {
 
 // AuthenticationCreateData is the typed request payload for Authentication.CreateTyped.
 type AuthenticationCreateData struct {
-	Email *string `json:"email,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Email string `json:"email"`
+	Expiry *string `json:"expiry,omitempty"`
 	Password string `json:"password"`
+	Token *string `json:"token,omitempty"`
+	User *map[string]any `json:"user,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

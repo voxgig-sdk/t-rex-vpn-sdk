@@ -21,7 +21,9 @@ SDK operations: `create`.
 Key fields to recognise:
 
 - `email`: User email address
+- `expiry`: Token expiration time
 - `password`: User password
+- `token`: Authentication token for VPN access
 
 ### Route map
 

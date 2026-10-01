@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 TRexVpnUtility.registrar = ->(u) {
   u.clean = TRexVpnUtilities::Clean
+  u.clean_add = TRexVpnUtilities::CleanAdd
+  u.clean_explain = TRexVpnUtilities::CleanExplain
   u.done = TRexVpnUtilities::Done
   u.make_error = TRexVpnUtilities::MakeError
   u.feature_add = TRexVpnUtilities::FeatureAdd

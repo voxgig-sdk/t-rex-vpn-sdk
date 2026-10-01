@@ -92,19 +92,16 @@ local function make_config()
             ["name"] = "email",
             ["title"] = "Email",
             ["type"] = "`$STRING`",
-            ["op"] = {
-              ["create"] = {
-                ["req"] = true,
-                ["type"] = "`$STRING`",
-              },
-            },
+            ["req"] = true,
             ["short"] = "User email address",
             ["format"] = "email",
           },
           {
-            ["name"] = "id",
-            ["title"] = "Id",
+            ["name"] = "expiry",
+            ["title"] = "Expiry",
             ["type"] = "`$STRING`",
+            ["short"] = "Token expiration time",
+            ["format"] = "date-time",
           },
           {
             ["name"] = "password",
@@ -114,10 +111,17 @@ local function make_config()
             ["short"] = "User password",
             ["format"] = "password",
           },
-        },
-        ["id"] = {
-          ["field"] = "id",
-          ["name"] = "id",
+          {
+            ["name"] = "token",
+            ["title"] = "Token",
+            ["type"] = "`$STRING`",
+            ["short"] = "Authentication token for VPN access",
+          },
+          {
+            ["name"] = "user",
+            ["title"] = "User",
+            ["type"] = "`$OBJECT`",
+          },
         },
         ["name"] = "authentication",
         ["op"] = {
@@ -144,7 +148,7 @@ local function make_config()
                 ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body.user`",
+                  ["res"] = "`body`",
                 },
                 ["args"] = {},
                 ["select"] = {},

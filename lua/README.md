@@ -39,7 +39,7 @@ local client = sdk.new({
 
 ```lua
 -- Create
-local created, err = client:Authentication():create({ password = "example_password" })
+local created, err = client:Authentication():create({ email = "example_email", password = "example_password" })
 if err then error(err) end
 
 ```
@@ -51,7 +51,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local authentication, err = client:Authentication():create({ password = "example" })
+local authentication, err = client:Authentication():create({ email = "example", password = "example" })
 if err then error(err) end
 ```
 
@@ -109,7 +109,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Authentication():create({ password = "example" })
+local result, err = client:Authentication():create({ email = "example", password = "example" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -231,8 +231,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `email` | User email address |
-| `id` |  |
+| `expiry` | Token expiration time |
 | `password` | User password |
+| `token` | Authentication token for VPN access |
+| `user` |  |
 
 Operations: Create.
 
@@ -258,13 +260,16 @@ Create an instance: `local authentication = client:Authentication(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `string` | User email address |
-| `id` | `string` |  |
+| `expiry` | `string` | Token expiration time |
 | `password` | `string` | User password |
+| `token` | `string` | Authentication token for VPN access |
+| `user` | `table` |  |
 
 #### Example: Create
 
 ```lua
 local authentication, err = client:Authentication():create({
+  email = "example_email", -- string
   password = "example_password", -- string
 })
 ```
@@ -432,7 +437,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local authentication = client:Authentication()
-authentication:create({ password = "example" })
+authentication:create({ email = "example", password = "example" })
 
 -- authentication:data_get() now returns the authentication data from the last create
 -- authentication:match_get() returns the last match criteria

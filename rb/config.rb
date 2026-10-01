@@ -104,19 +104,16 @@ module TRexVpnConfig
               "name" => "email",
               "title" => "Email",
               "type" => "`$STRING`",
-              "op" => {
-                "create" => {
-                  "req" => true,
-                  "type" => "`$STRING`",
-                },
-              },
+              "req" => true,
               "short" => "User email address",
               "format" => "email",
             },
             {
-              "name" => "id",
-              "title" => "Id",
+              "name" => "expiry",
+              "title" => "Expiry",
               "type" => "`$STRING`",
+              "short" => "Token expiration time",
+              "format" => "date-time",
             },
             {
               "name" => "password",
@@ -126,11 +123,18 @@ module TRexVpnConfig
               "short" => "User password",
               "format" => "password",
             },
+            {
+              "name" => "token",
+              "title" => "Token",
+              "type" => "`$STRING`",
+              "short" => "Authentication token for VPN access",
+            },
+            {
+              "name" => "user",
+              "title" => "User",
+              "type" => "`$OBJECT`",
+            },
           ],
-          "id" => {
-            "field" => "id",
-            "name" => "id",
-          },
           "name" => "authentication",
           "op" => {
             "create" => {
@@ -156,7 +160,7 @@ module TRexVpnConfig
                   "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body.user`",
+                    "res" => "`body`",
                   },
                   "args" => {},
                   "select" => {},

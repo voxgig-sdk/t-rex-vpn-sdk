@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
+> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -28,6 +28,7 @@ support (`create`):
 ```ts
 const client = new TRexVpnSDK()
 const authentication = await client.Authentication().create({
+  email: 'example',
   password: 'example',
 })
 ```
@@ -49,11 +50,11 @@ network, and no credentials:
 const client = TRexVpnSDK.test({
   entity: {
     authentication: {
-      test01: { id: 'test01', password: 'example_password' },
+      test01: { id: 'test01', email: 'example_email', password: 'example_password' },
     },
   },
 })
-const authentication = await client.Authentication().create({ password: 'example_password' })
+const authentication = await client.Authentication().create({ email: 'example_email', password: 'example_password' })
 // authentication is the Authentication entity, populated with mock data
 // — call authentication.data() for the record itself
 console.log(authentication)
@@ -63,7 +64,7 @@ console.log(authentication)
 
 ```python
 client = TRexVpnSDK.test()
-authentication = client.Authentication().create({"password": "example"})
+authentication = client.Authentication().create({"email": "example", "password": "example"})
 print(authentication)
 ```
 
@@ -74,7 +75,7 @@ print(authentication)
 $client = TRexVpnSDK::test([
     "entity" => ["authentication" => ["test01" => []]],
 ]);
-$authentication = $client->Authentication()->create(["password" => "example"]);
+$authentication = $client->Authentication()->create(["email" => "example", "password" => "example"]);
 ```
 
 ### Golang
@@ -82,7 +83,7 @@ $authentication = $client->Authentication()->create(["password" => "example"]);
 ```go
 client := sdk.Test()
 result, err := client.Authentication(nil).Create(
-    map[string]any{"password": "example"}, nil,
+    map[string]any{"email": "example", "password": "example"}, nil,
 )
 ```
 
@@ -93,26 +94,26 @@ result, err := client.Authentication(nil).Create(
 client = TRexVpnSDK.test({
   "entity" => { "authentication" => { "test01" => {} } },
 })
-authentication = client.Authentication.create({ "password" => "example" })
+authentication = client.Authentication.create({ "email" => "example", "password" => "example" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Authentication():create({ password = "example" })
+local result, err = client:Authentication():create({ email = "example", password = "example" })
 ```
 
 ## Packages
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/t-rex-vpn-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/tags) |
-| Python | `voxgig-sdk-t-rex-vpn-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/tags) |
-| PHP | `voxgig-sdk/t-rex-vpn-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/tags) |
+| TypeScript | `@voxgig-sdk/t-rex-vpn-sdk` | publish pending — [install from source](ts/README.md#install) |
+| Python | `voxgig-sdk-t-rex-vpn-sdk` | publish pending — [install from source](py/README.md#install) |
+| PHP | `voxgig-sdk/t-rex-vpn-sdk` | publish pending — [install from source](php/README.md#install) |
 | Golang | `github.com/voxgig-sdk/t-rex-vpn-sdk/go` | `go get github.com/voxgig-sdk/t-rex-vpn-sdk/go@latest` |
-| Ruby | `voxgig-sdk-t-rex-vpn-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/tags) |
-| Lua | `voxgig-sdk-t-rex-vpn-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/t-rex-vpn-sdk/tags) |
+| Ruby | `voxgig-sdk-t-rex-vpn-sdk` | publish pending — [install from source](rb/README.md#install) |
+| Lua | `voxgig-sdk-t-rex-vpn-sdk` | publish pending — [install from source](lua/README.md#install) |
 | Go CLI | `github.com/voxgig-sdk/t-rex-vpn-sdk/go-cli` | `go install github.com/voxgig-sdk/t-rex-vpn-sdk/go-cli/cmd/t-rex-vpn@latest` |
 | Go MCP server | `github.com/voxgig-sdk/t-rex-vpn-sdk/go-mcp` | `go get github.com/voxgig-sdk/t-rex-vpn-sdk/go-mcp@latest` |
 

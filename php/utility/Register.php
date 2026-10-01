@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 TRexVpnUtility::setRegistrar(function (TRexVpnUtility $u): void {
     $u->clean = [TRexVpnClean::class, 'call'];
+    $u->clean_add = [TRexVpnClean::class, 'add'];
+    $u->clean_explain = [TRexVpnDone::class, 'clean_explain'];
     $u->done = [TRexVpnDone::class, 'call'];
     $u->make_error = [TRexVpnMakeError::class, 'call'];
     $u->feature_add = [TRexVpnFeatureAdd::class, 'call'];

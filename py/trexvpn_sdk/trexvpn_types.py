@@ -17,18 +17,22 @@ from typing import TypedDict, Any
 
 
 class AuthenticationRequired(TypedDict):
+    email: str
     password: str
 
 
 class Authentication(AuthenticationRequired, total=False):
-    email: str
-    id: str
+    expiry: str
+    token: str
+    user: dict
 
 
 class AuthenticationCreateDataRequired(TypedDict):
+    email: str
     password: str
 
 
 class AuthenticationCreateData(AuthenticationCreateDataRequired, total=False):
-    email: str
-    id: str
+    expiry: str
+    token: str
+    user: dict

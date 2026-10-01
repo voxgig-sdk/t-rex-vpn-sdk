@@ -43,7 +43,7 @@ client = TRexVpnSDK({
 
 ```python
 # Create — returns the ENTITY (call data_get() for the record)
-created = client.Authentication().create({"password": "example_password"})
+created = client.Authentication().create({"email": "example_email", "password": "example_password"})
 
 ```
 
@@ -54,7 +54,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    authentication = client.Authentication().create({ "password": "example" })
+    authentication = client.Authentication().create({ "email": "example", "password": "example" })
     print(authentication)
 except Exception as err:
     print(f"create failed: {err}")
@@ -123,7 +123,7 @@ client = TRexVpnSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-authentication = client.Authentication().create({"password": "example"})
+authentication = client.Authentication().create({"email": "example", "password": "example"})
 # authentication contains the mock response record
 ```
 
@@ -243,8 +243,10 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `email` | User email address |
-| `id` |  |
+| `expiry` | Token expiration time |
 | `password` | User password |
+| `token` | Authentication token for VPN access |
+| `user` |  |
 
 Operations: Create.
 
@@ -270,13 +272,16 @@ Create an instance: `authentication = client.Authentication()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `str` | User email address |
-| `id` | `str` |  |
+| `expiry` | `str` | Token expiration time |
 | `password` | `str` | User password |
+| `token` | `str` | Authentication token for VPN access |
+| `user` | `dict` |  |
 
 #### Example: Create
 
 ```python
 authentication = client.Authentication().create({
+    "email": "example_email",  # str
     "password": "example_password",  # str
 })
 ```
@@ -443,7 +448,7 @@ stores the returned data and match criteria internally.
 
 ```python
 authentication = client.Authentication()
-authentication.create({ "password": "example" })
+authentication.create({ "email": "example", "password": "example" })
 
 # authentication.data_get() now returns the authentication data from the last create
 # authentication.match_get() returns the last match criteria

@@ -9,20 +9,16 @@ main: kit: entity: authentication: {
       fo: "email"
       h: "Email"
       n: "email"
-      op: {
-        create: {
-          req: true
-          type: "`$STRING`"
-        }
-      }
-      r: false
+      r: true
       sh: "User email address"
       t: "`$STRING`"
     }
-    id: {
-      h: "Id"
-      n: "id"
+    expiry: {
+      fo: "date-time"
+      h: "Expiry"
+      n: "expiry"
       r: false
+      sh: "Token expiration time"
       t: "`$STRING`"
     }
     password: {
@@ -33,11 +29,19 @@ main: kit: entity: authentication: {
       sh: "User password"
       t: "`$STRING`"
     }
-  }
-
-  id: {
-    field: "id"
-    name: "id"
+    token: {
+      h: "Token"
+      n: "token"
+      r: false
+      sh: "Authentication token for VPN access"
+      t: "`$STRING`"
+    }
+    user: {
+      h: "User"
+      n: "user"
+      r: false
+      t: "`$OBJECT`"
+    }
   }
 
   name: "authentication"
@@ -63,7 +67,7 @@ main: kit: entity: authentication: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.user`"
+            res: "`body`"
           }
         }
       ]

@@ -12,9 +12,18 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`):
+GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases)), or
+from a clone:
 
-- Releases: [https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/t-rex-vpn-sdk
+```
+
+Then add it to your `Gemfile` by path, and run `bundle install`:
+
+```ruby
+gem "voxgig-sdk-t-rex-vpn-sdk", path: "./t-rex-vpn-sdk/rb"
+```
 
 
 ## Tutorial: your first API call
@@ -36,7 +45,7 @@ client = TRexVpnSDK.new({
 
 ```ruby
 # create returns the ENTITY — call data_get for the created Authentication record.
-created = client.Authentication.create({ "password" => "example_password" })
+created = client.Authentication.create({ "email" => "example_email", "password" => "example_password" })
 
 ```
 
@@ -47,7 +56,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  authentication = client.Authentication.create({ "password" => "example" })
+  authentication = client.Authentication.create({ "email" => "example", "password" => "example" })
 rescue => err
   warn "create failed: #{err}"
 end
@@ -117,7 +126,7 @@ client = TRexVpnSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-authentication = client.Authentication.create({ "password" => "example" })
+authentication = client.Authentication.create({ "email" => "example", "password" => "example" })
 puts authentication
 ```
 
@@ -236,8 +245,10 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `email` | User email address |
-| `id` |  |
+| `expiry` | Token expiration time |
 | `password` | User password |
+| `token` | Authentication token for VPN access |
+| `user` |  |
 
 Operations: Create.
 
@@ -263,13 +274,16 @@ Create an instance: `authentication = client.Authentication`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `String` | User email address |
-| `id` | `String` |  |
+| `expiry` | `String` | Token expiration time |
 | `password` | `String` | User password |
+| `token` | `String` | Authentication token for VPN access |
+| `user` | `Hash` |  |
 
 #### Example: Create
 
 ```ruby
 authentication = client.Authentication.create({
+  "email" => "example_email", # String
   "password" => "example_password", # String
 })
 ```
@@ -437,7 +451,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 authentication = client.Authentication
-authentication.create({ "password" => "example" })
+authentication.create({ "email" => "example", "password" => "example" })
 
 # authentication.data_get now returns the authentication data from the last create
 # authentication.match_get returns the last match criteria

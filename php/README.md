@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases](https://github.com/voxgig-sdk/t-rex-vpn-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/t-rex-vpn-sdk
+composer config repositories.t-rex-vpn-sdk path ./t-rex-vpn-sdk/php
+composer require voxgig-sdk/t-rex-vpn-sdk:@dev
+```
 
 
 ## Tutorial: your first API call
@@ -37,7 +42,7 @@ $client = new TRexVpnSDK([
 
 ```php
 // create() returns the ENTITY — call data_get() for the created Authentication record.
-$created = $client->Authentication()->create(["password" => "example_password"]);
+$created = $client->Authentication()->create(["email" => "example_email", "password" => "example_password"]);
 
 ```
 
@@ -49,7 +54,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $authentication = $client->Authentication()->create(["password" => "example"]);
+    $authentication = $client->Authentication()->create(["email" => "example", "password" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -123,7 +128,7 @@ $client = TRexVpnSDK::test();
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$authentication = $client->Authentication()->create(["password" => "example"]);
+$authentication = $client->Authentication()->create(["email" => "example", "password" => "example"]);
 print_r($authentication->data_get());
 ```
 
@@ -246,8 +251,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `email` | User email address |
-| `id` |  |
+| `expiry` | Token expiration time |
 | `password` | User password |
+| `token` | Authentication token for VPN access |
+| `user` |  |
 
 Operations: Create.
 
@@ -273,13 +280,16 @@ Create an instance: `$authentication = $client->Authentication();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `email` | `string` | User email address |
-| `id` | `string` |  |
+| `expiry` | `string` | Token expiration time |
 | `password` | `string` | User password |
+| `token` | `string` | Authentication token for VPN access |
+| `user` | `array` |  |
 
 #### Example: Create
 
 ```php
 $authentication = $client->Authentication()->create([
+    "email" => null, // string
     "password" => null, // string
 ]);
 ```
@@ -447,7 +457,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $authentication = $client->Authentication();
-$authentication->create(["password" => "example"]);
+$authentication->create(["email" => "example", "password" => "example"]);
 
 // $authentication->data_get() now returns the authentication data from the last create
 // $authentication->match_get() returns the last match criteria
