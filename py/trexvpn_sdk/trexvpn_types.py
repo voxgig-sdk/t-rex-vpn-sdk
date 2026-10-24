@@ -27,12 +27,6 @@ class Authentication(AuthenticationRequired, total=False):
     user: dict
 
 
-class AuthenticationCreateDataRequired(TypedDict):
+class AuthenticationCreateData(TypedDict):
     email: str
     password: str
-
-
-class AuthenticationCreateData(AuthenticationCreateDataRequired, total=False):
-    expiry: str
-    token: str
-    user: dict

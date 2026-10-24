@@ -38,23 +38,11 @@ Authentication = Struct.new(
 # @!attribute [rw] email
 #   @return [String]
 #
-# @!attribute [rw] expiry
-#   @return [String, nil]
-#
 # @!attribute [rw] password
 #   @return [String]
-#
-# @!attribute [rw] token
-#   @return [String, nil]
-#
-# @!attribute [rw] user
-#   @return [Hash, nil]
 AuthenticationCreateData = Struct.new(
   :email,
-  :expiry,
   :password,
-  :token,
-  :user,
   keyword_init: true
 )
 

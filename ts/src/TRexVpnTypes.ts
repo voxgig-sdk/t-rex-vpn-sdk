@@ -15,9 +15,6 @@ export interface Authentication {
 
 export interface AuthenticationCreateData {
   email: string
-  expiry?: string
   password: string
-  token?: string
-  user?: Record<string, any>
 }
 

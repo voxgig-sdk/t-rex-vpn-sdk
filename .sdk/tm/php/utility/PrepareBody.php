@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // TRexVpn SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class TRexVpnPrepareBody
 {
     public static function call(TRexVpnContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (TRexVpnMedia::isRawRequest($ctx->point)) {
+                return TRexVpnMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

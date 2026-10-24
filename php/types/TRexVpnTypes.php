@@ -26,9 +26,6 @@ class Authentication
 class AuthenticationCreateData
 {
     public string $email;
-    public ?string $expiry = null;
     public string $password;
-    public ?string $token = null;
-    public ?array $user = null;
 }
 

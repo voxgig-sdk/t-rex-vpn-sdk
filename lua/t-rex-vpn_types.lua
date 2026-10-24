@@ -15,10 +15,7 @@
 
 ---@class AuthenticationCreateData
 ---@field email string
----@field expiry? string
 ---@field password string
----@field token? string
----@field user? table
 
 local M = {}
 
